@@ -27,6 +27,7 @@ FLUSH PRIVILEGES;
 vi /etc/mysql/my.cnf
 
 [mysqld]
+
 bind-address = 0.0.0.0
 
 sudo service mysql restart
