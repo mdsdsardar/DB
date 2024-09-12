@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Node App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>MySQL Data Entry</h1>
+        <form id="dataForm">
+            <label for="key">Key:</label>
+            <input type="text" id="key" name="key" required>
+            <label for="value">Value:</label>
+            <input type="text" id="value" name="value" required>
+            <button type="submit">Submit</button>
+        </form>
+        <h2>Stored Values</h2>
+        <ul id="valuesList"></ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
+
