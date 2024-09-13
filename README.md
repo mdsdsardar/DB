@@ -30,4 +30,18 @@ vi /etc/mysql/my.cnf  OR vi /etc/my.cnf
 
 bind-address = 0.0.0.0
 
+performance_schema = ON
+
+max_digest_length = 4096
+
+performance_schema_max_digest_length = 4096
+
+performance-schema-consumer-events-statements-current = ON
+
+performance-schema-consumer-events-waits-current = ON
+
+performance-schema-consumer-events-statements-history-long = ON
+
+performance-schema-consumer-events-statements-history = ON
+
 sudo service mysql restart
