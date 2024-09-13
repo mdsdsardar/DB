@@ -18,6 +18,10 @@ CREATE DATABASE saad_db;
 
 USE saad_db;
 
+CREATE TABLE mytable (id INT AUTO_INCREMENT PRIMARY KEY, `key` VARCHAR(255) NOT NULL, `value` VARCHAR(255) NOT NULL);
+
+INSERT INTO mytable (`key`, `value`) VALUES ('22', '44');
+
 CREATE USER 'datadog'@'%' IDENTIFIED BY 'yourpassword';
 
 GRANT ALL PRIVILEGES ON saad_db.* TO 'datadog'@'%';
