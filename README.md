@@ -58,3 +58,10 @@ DD_API_KEY=Secret_key DD_SITE="us5.datadoghq.com" bash -c "$(curl -L https://ins
 
 systemctl start datadog-agent
 
+vi /etc/datadog-agent/datadog.yaml
+
+Uncomment these 2 lines.
+apm_config: 
+enabled: true
+
+
