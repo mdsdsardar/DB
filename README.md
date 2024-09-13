@@ -24,7 +24,7 @@ GRANT ALL PRIVILEGES ON saad_db.* TO 'datadog'@'%';
 
 FLUSH PRIVILEGES;
 
-vi /etc/mysql/my.cnf
+vi /etc/mysql/my.cnf  OR vi /etc/my.cnf
 
 [mysqld]
 
