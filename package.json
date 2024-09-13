@@ -7,7 +7,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "dd-trace": "^1.0.0",
+    "dd-trace": "^3.17.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mysql": "^2.18.1",
