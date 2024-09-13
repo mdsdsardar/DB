@@ -36,6 +36,8 @@ GRANT EXECUTE ON datadog.* to datadog@'%';
 
 GRANT CREATE TEMPORARY TABLES ON datadog.* TO datadog@'%';
 
+vi /home/ec2-user/datadog_procedure.sql
+
 DELIMITER $$
 CREATE PROCEDURE datadog.explain_statement(IN query TEXT)
     SQL SECURITY DEFINER
@@ -47,26 +49,37 @@ BEGIN
 END $$
 DELIMITER ;
 
+source /home/ec2-user/datadog_procedure.sql;
+
+GRANT EXECUTE ON PROCEDURE datadog.explain_statement TO datadog@'%';
+
+vi  /home/ec2-user/performance_schema.sql
+
+DELIMITER $$
+CREATE PROCEDURE datadog.enable_events_statements_consumers()
+    SQL SECURITY DEFINER
+BEGIN
+    UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name LIKE 'events_statements_%';
+    UPDATE performance_schema.setup_consumers SET enabled='YES' WHERE name = 'events_waits_current';
+END $$
+DELIMITER ;
+
+source /home/ec2-user/performance_schema.sql;
+
+GRANT EXECUTE ON PROCEDURE datadog.enable_events_statements_consumers TO datadog@'%';
+
 FLUSH PRIVILEGES;
 
 vi /etc/mysql/my.cnf  OR vi /etc/my.cnf
 
 [mysqld]
-
 bind-address = 0.0.0.0
-
 performance_schema = ON
-
 max_digest_length = 4096
-
 performance_schema_max_digest_length = 4096
-
 performance-schema-consumer-events-statements-current = ON
-
 performance-schema-consumer-events-waits-current = ON
-
 performance-schema-consumer-events-statements-history-long = ON
-
 performance-schema-consumer-events-statements-history = ON
 
 sudo service mysql restart
@@ -88,16 +101,10 @@ enabled: true
 vi /etc/datadog-agent/conf.d/mysql.d/conf.yaml
 
 init_config:
-
 instances:
-
   - dbm: true
-
-    host: 127.0.0.1
-    
-    port: 3306
-    
-    username: datadog
-    
+    host: 127.0.0.1    
+    port: 3306    
+    username: datadog    
     password: 'yourpassword'
 
