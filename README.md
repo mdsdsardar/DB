@@ -64,4 +64,19 @@ Uncomment these 2 lines.
 apm_config: 
 enabled: true
 
+vi /etc/datadog-agent/conf.d/mysql.d/conf.yaml
+
+init_config:
+
+instances:
+
+  - dbm: true
+
+    host: 127.0.0.1
+    
+    port: 3306
+    
+    username: datadog
+    
+    password: 'yourpassword'
 
