@@ -26,6 +26,27 @@ CREATE USER 'datadog'@'%' IDENTIFIED BY 'yourpassword';
 
 GRANT ALL PRIVILEGES ON saad_db.* TO 'datadog'@'%';
 
+GRANT PROCESS ON *.* TO datadog@'%';
+
+GRANT SELECT ON performance_schema.* TO datadog@'%';
+
+CREATE SCHEMA IF NOT EXISTS datadog;
+
+GRANT EXECUTE ON datadog.* to datadog@'%';
+
+GRANT CREATE TEMPORARY TABLES ON datadog.* TO datadog@'%';
+
+DELIMITER $$
+CREATE PROCEDURE datadog.explain_statement(IN query TEXT)
+    SQL SECURITY DEFINER
+BEGIN
+    SET @explain := CONCAT('EXPLAIN FORMAT=json ', query);
+    PREPARE stmt FROM @explain;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END $$
+DELIMITER ;
+
 FLUSH PRIVILEGES;
 
 vi /etc/mysql/my.cnf  OR vi /etc/my.cnf
