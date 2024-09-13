@@ -49,3 +49,12 @@ performance-schema-consumer-events-statements-history-long = ON
 performance-schema-consumer-events-statements-history = ON
 
 sudo service mysql restart
+
+DataDog Installation:
+
+dnf install -y libxcrypt-compat
+
+DD_API_KEY=Secret_key DD_SITE="us5.datadoghq.com" bash -c "$(curl -L https://install.datadoghq.com/scripts/install_script_agent7.sh)"
+
+systemctl start datadog-agent
+
